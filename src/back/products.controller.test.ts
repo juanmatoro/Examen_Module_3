@@ -49,7 +49,7 @@ describe('ProductsController', () => {
     });
 
     describe('getAll', () => {
-        it('should call repo.read and return a response with all products', async () => {
+        test ('should call repo.read and return a response with all products', async () => {
             (mockRepo.read as ReturnType<typeof vi.fn>).mockResolvedValue(
                 mockProducts,
             );
@@ -68,7 +68,7 @@ describe('ProductsController', () => {
             expect(next).not.toHaveBeenCalled();
         });
 
-        it('should call next with an error when repo.read throws', async () => {
+        test ('should call next with an error when repo.read throws', async () => {
             const error = new Error('DB error');
             (mockRepo.read as ReturnType<typeof vi.fn>).mockRejectedValue(error);
 
@@ -84,7 +84,7 @@ describe('ProductsController', () => {
     });
 
     describe('getById', () => {
-        it('should call repo.readById with the id from params and return the product', async () => {
+        test ('should call repo.readById with the id from params and return the product', async () => {
             req.params = { id: '1' };
             (mockRepo.readById as ReturnType<typeof vi.fn>).mockResolvedValue(
                 mockProduct,
@@ -104,7 +104,7 @@ describe('ProductsController', () => {
             expect(next).not.toHaveBeenCalled();
         });
 
-        it('should call next with an error when repo.readById throws', async () => {
+        test ('should call next with an error when repo.readById throws', async () => {
             req.params = { id: '99' };
             const error = new Error('Product not found');
             (mockRepo.readById as ReturnType<typeof vi.fn>).mockRejectedValue(
@@ -131,7 +131,7 @@ describe('ProductsController', () => {
             hasPromo: true,
         };
 
-        it('should call repo.create with body data, set status 201 and return the new product', async () => {
+        test ('should call repo.create with body data, set status 201 and return the new product', async () => {
             req.body = newData;
             (mockRepo.create as ReturnType<typeof vi.fn>).mockResolvedValue(
                 mockProduct,
@@ -152,7 +152,7 @@ describe('ProductsController', () => {
             expect(next).not.toHaveBeenCalled();
         });
 
-        it('should call next with an error when repo.create throws', async () => {
+        test ('should call next with an error when repo.create throws', async () => {
             req.body = newData;
             const error = new Error('Invalid data');
             (mockRepo.create as ReturnType<typeof vi.fn>).mockRejectedValue(
@@ -174,7 +174,7 @@ describe('ProductsController', () => {
     describe('update', () => {
         const updateData = { name: 'Updated Product', price: 300 };
 
-        it('should call repo.update with id and body, and return the updated product', async () => {
+        test ('should call repo.update with id and body, and return the updated product', async () => {
             req.params = { id: '1' };
             req.body = updateData;
             const updatedProduct = { ...mockProduct, ...updateData };
@@ -196,7 +196,7 @@ describe('ProductsController', () => {
             expect(next).not.toHaveBeenCalled();
         });
 
-        it('should call next with an error when repo.update throws', async () => {
+        test ('should call next with an error when repo.update throws', async () => {
             req.params = { id: '99' };
             req.body = updateData;
             const error = new Error('Product not found');
@@ -216,7 +216,7 @@ describe('ProductsController', () => {
     });
 
     describe('delete', () => {
-        it('should call repo.delete with the id and return the deleted product', async () => {
+        test ('should call repo.delete with the id and return the deleted product', async () => {
             req.params = { id: '1' };
             (mockRepo.delete as ReturnType<typeof vi.fn>).mockResolvedValue(
                 mockProduct,
@@ -236,7 +236,7 @@ describe('ProductsController', () => {
             expect(next).not.toHaveBeenCalled();
         });
 
-        it('should call next with an error when repo.delete throws', async () => {
+        test ('should call next with an error when repo.delete throws', async () => {
             req.params = { id: '99' };
             const error = new Error('Product not found');
             (mockRepo.delete as ReturnType<typeof vi.fn>).mockRejectedValue(
