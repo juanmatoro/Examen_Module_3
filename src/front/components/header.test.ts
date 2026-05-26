@@ -4,7 +4,7 @@ import '@testing-library/jest-dom/vitest';
 
 import { createHeader } from './header';
 
-describe('createHeader', () => {
+describe('When we call createHeader', () => {
     beforeEach(() => {
         document.body.innerHTML = '';
     });
