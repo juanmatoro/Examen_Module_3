@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, expect, beforeEach } from 'vitest';
 import { screen } from '@testing-library/dom';
 import '@testing-library/jest-dom/vitest';
 
